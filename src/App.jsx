@@ -8,7 +8,7 @@ import Profile from "./Profile";
 function App() {
   const [posts, setPosts] = useState([]);
   const [selectedPost, setSelectedPost] = useState(null);
-  const [view, setView] = useState("feed");
+  const [view, setView] = useState("feed"); 
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,7 +19,7 @@ function App() {
         image: cat.url,
         user: "cat_user_" + i,
         likes: Math.floor(Math.random() * 1000),
-        caption: "Mira este gatito",
+        caption: "Miren este gato 😺",
       }));
 
       setPosts(formatted);
