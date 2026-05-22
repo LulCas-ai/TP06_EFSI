@@ -1,14 +1,11 @@
-function PostDetail({ post, setSelectedPost }) {
+function PostDetallado({ post, setSelectedPost }) {
   return (
-    <div className="modal" onClick={() => setSelectedPost(null)}>
-      <div className="modal-content">
-        <img src={post.image} alt="cat" />
-        <h3>{post.user}</h3>
-        <p>{post.caption}</p>
-        <p>{post.likes} likes</p>
-      </div>
+    <div className="post" onClick={() => setSelectedPost(post)}>
+      <h4>{post.user}</h4>
+      <img src={post.image} alt="cat" />
+      <span>{post.likes} likes</span>
     </div>
   );
 }
 
-export default PostDetail;
+export default PostDetallado;

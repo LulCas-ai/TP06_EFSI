@@ -2,27 +2,33 @@ import { useEffect, useState } from "react";
 import { getCats } from "./JS/Api";
 import Feed from "./Feed";
 import Header from "./Header";
-import PostDetail from "./PostDetallado";
 import Profile from "./Profile";
-
+import { getUser } from "./JS/Api";
 function App() {
   const [posts, setPosts] = useState([]);
   const [selectedPost, setSelectedPost] = useState(null);
   const [view, setView] = useState("feed"); 
-
+  const [user, setUser] = useState(null);
+  
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getCats();
+      try {
+        const data = await getCats();
+        const userData = await getUser();
 
-      const formatted = data.map((cat, i) => ({
-        id: cat.id,
-        image: cat.url,
-        user: "cat_user_" + i,
-        likes: Math.floor(Math.random() * 1000),
-        caption: "Miren este gato 😺",
-      }));
+        setUser(userData?.results?.[0] ?? null);
 
-      setPosts(formatted);
+        const formatted = data.map((cat, i) => ({
+          id: cat.id,
+          image: cat.url,
+          user: "cat_user_" + i,
+          likes: Math.floor(Math.random() * 1000)
+        }));
+
+        setPosts(formatted);
+      } catch (error) {
+        console.error("Error cargando datos de la API:", error);
+      }
     };
 
     fetchData();
@@ -36,11 +42,14 @@ function App() {
         <Feed posts={posts} setSelectedPost={setSelectedPost} />
       )}
 
-      {view === "profile" && <Profile posts={posts} />}
+      {view === "profile" && <Profile posts={posts} user={user} />}
 
-      {selectedPost && (
-        <PostDetail post={selectedPost} setSelectedPost={setSelectedPost} />
+      {view.includes("post") && selectedPost && (
+        <div className="post-detallado">
+          <button onClick={() => setView("feed")}>Volver al feed</button>
+        </div>
       )}
+
     </>
   );
 }

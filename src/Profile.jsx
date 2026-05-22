@@ -1,8 +1,12 @@
-function Profile({ posts }) {
+function Profile({ posts, user }) {
+
+
+  user && <div className="profile">Cargando perfil...</div>
+
   return (
     <div className="profile">
-      <h2>mi_usuario</h2>
-      <p>Bio: hola mi nombre es lucas :V</p>
+      <h2>{user.name.first}</h2>
+      <p>Bio: hola mi nombre es {user.name.first} :V</p>
 
       <div className="stats">
         <span>{posts.length} posts</span>

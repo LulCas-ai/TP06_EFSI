@@ -6,3 +6,10 @@ export const getCats = async () => {
   );
   return res.data;
 };
+
+export const getUser = async () => {
+  const res = await axios.get(
+    "https://randomuser.me/api/"
+  );
+  return res.data;
+};

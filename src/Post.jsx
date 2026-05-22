@@ -1,9 +1,8 @@
-function Post({ post, setSelectedPost }) {
+function Post({ post, setSelectedPost, setView }) {
   return (
-    <div className="post" onClick={() => setSelectedPost(post)}>
+    <div className="post" onClick={() => setSelectedPost(post) && setView(`post${post.id}`)}>
       <h4>{post.user}</h4>
-      <img src={post.image}/>
-      <p>{post.caption}</p>
+      <img src={post.image} alt="cat" />
       <span>{post.likes} likes</span>
     </div>
   );
