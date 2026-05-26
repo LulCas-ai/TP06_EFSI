@@ -4,6 +4,7 @@ import Feed from "./Feed";
 import Header from "./Header";
 import Profile from "./Profile";
 import { getUser } from "./JS/Api";
+import "./app.css"
 function App() {
   const [posts, setPosts] = useState([]);
   const [selectedPost, setSelectedPost] = useState(null);
