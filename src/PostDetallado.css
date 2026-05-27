@@ -1,0 +1,15 @@
+.user{
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 2.5%;
+}
+
+.user img{
+    border-radius: 50%;
+}
+
+.gato-img{
+    width: 1000px;
+    height: 700px;
+}

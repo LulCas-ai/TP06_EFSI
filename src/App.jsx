@@ -5,12 +5,15 @@ import Header from "./Header";
 import Profile from "./Profile";
 import { getUser } from "./JS/Api";
 import "./app.css"
+import PostDetallado from "./PostDetallado";
+
+
 function App() {
   const [posts, setPosts] = useState([]);
   const [selectedPost, setSelectedPost] = useState(null);
-  const [view, setView] = useState("feed"); 
+  const [view, setView] = useState("feed");
   const [user, setUser] = useState(null);
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -40,13 +43,15 @@ function App() {
       <Header setView={setView} />
 
       {view === "feed" && (
-        <Feed posts={posts} setSelectedPost={setSelectedPost} />
+        <Feed posts={posts} setSelectedPost={setSelectedPost} setView={setView}
+        />
       )}
 
       {view === "profile" && <Profile posts={posts} user={user} />}
 
-      {view.includes("post") && selectedPost && (
+      {view == "post" && selectedPost && (
         <div className="post-detallado">
+          <PostDetallado className="post-detallado-post" post={selectedPost} user = {user}/>
           <button onClick={() => setView("feed")}>Volver al feed</button>
         </div>
       )}
